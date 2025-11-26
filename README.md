@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/STM32_Logo.svg/2560px-STM32_Logo.svg.png" width="300px">
+  <img src="https://github.com/user-attachments/assets/4039f2cd-f828-490b-b8e7-520a24055ca9" width="600px">
   
   # STM32-Learning Journey
   
@@ -8,34 +8,19 @@
   ![IDE](https://img.shields.io/badge/IDE-Keil_MDK_5-green?style=for-the-badge)
   ![Status](https://img.shields.io/badge/Status-In_Progress-yellow?style=for-the-badge)
 
-  <p> ⚡ 记录我从零开始学习 STM32 嵌入式开发的完整历程 / My STM32 learning roadmap </p>
+  <p>记录我学习 STM32 嵌入式开发</p>
 </div>
 
 ---
 
-## 📖 简介 | Introduction
+## 📖 简介
 
-这里存放了我学习 STM32 过程中的所有练习代码、笔记和实验工程。
-项目从基础的点灯（GPIO）开始，涵盖中断、定时器、通信协议（UART/I2C/SPI）以及 RTOS 实战。
+这里存放了我学习 STM32 过程中的练习代码、笔记和实验工程。
 
-> **Note:** 所有的代码都基于 STM32 HAL 库 (或标准库，按你实际写)。
+## 🛠️ 开发环境 
 
-## 🛠️ 开发环境 | Tech Stack
-
-* **MCU**: STM32F103C8T6 (Blue Pill) / STM32F407ZGT6
+* **MCU**: STM32F103C8T6
 * **IDE**: Keil uVision 5.38
-* **Debugger**: ST-Link V2 / J-Link
-* **Software**: STM32CubeMX, Serial Assistant (XCOM)
+* **Software**: STM32CubeMX
+* **Simulation**: Proteus
 
-## 📂 目录结构 | Repository Structure
-
-```text
-STM32-Learning/
-├── 01-GPIO/              # 基础 IO 操作 (LED, Buzzer)
-│   ├── 01-LED_Blink/     # 点灯实验
-│   └── 02-Key_Input/     # 按键输入
-├── 02-UART/              # 串口通信实验
-├── 03-Timers/            # 定时器与 PWM
-├── 04-ADC_DAC/           # 模数转换
-├── Docs/                 # 学习笔记与原理图
-└── README.md             # 你现在看到的这个文件
