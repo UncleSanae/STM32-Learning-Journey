@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/4039f2cd-f828-490b-b8e7-520a24055ca9" width="800px">
+  <img src="https://github.com/user-attachments/assets/4039f2cd-f828-490b-b8e7-520a24055ca9" width="600px">
   
   # UncleSanae's-STM32-Learning-Journey
   
