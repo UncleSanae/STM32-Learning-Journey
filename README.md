@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://github.com/user-attachments/assets/4039f2cd-f828-490b-b8e7-520a24055ca9" width="600px">
-  
+  </div>
   # UncleSanae's-STM32-Learning-Journey
   ![Status](https://img.shields.io/badge/Status-In_Progress-yellow?style=for-the-badge)
   <br>
@@ -21,7 +21,7 @@
 * **IDE**: Keil uVision 5.38
 * **Config**: STM32CubeMX
 * **Simulation**: Proteus
-  </div>
+  
 <div align="center">
 <a href="https://git.io/typing-svg">
   <img src="https://readme-typing-svg.herokuapp.com?font=ZCOOL+KuaiLe&weight=400&size=30&pause=1000&color=48C9B0&center=true&vCenter=true&width=435&lines=少女敲码中......" alt="Typing SVG" />
