@@ -1,3 +1,5 @@
-# STM32-Study
-Using for STM32 study /n
-In this repository i will publish projects-exercises that i made during progress of learning STM32
+# STM32-Learning
+
+This repository is used for my STM32 learning journey.
+
+Here I will publish projects and exercises that I created while learning STM32.
