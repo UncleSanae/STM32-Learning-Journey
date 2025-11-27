@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "gpio.h"
+#include "../Inc/main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -65,7 +66,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+ 
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -87,13 +88,38 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  uint16_t number[8] = { 0x00A4, 0x00C0, 0x00A4, 0x0092, 0x00F9, 0x00F9, 0x00A4, 0x00F8 };
+  HAL_GPIO_WritePin(GPIOB, 0xFFFF, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, 0XFFFF, GPIO_PIN_SET);
+  uint32_t last_switch_time = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    HAL_GPIO_WritePin(A_GPIO_Port, A_Pin, GPIO_PIN_RESET);
+    for (int i = 0; i < 8; i++)
+    {
+      uint16_t numberSlect = 1 << (i+1);
+      
+      GPIOB -> ODR = numberSlect;
+      GPIOA -> ODR = (number[i] << 1);
+      HAL_GPIO_WritePin(GPIOB, 0xFFFF, GPIO_PIN_RESET);
+      HAL_Delay(1);
+    }
+    if (HAL_GetTick() - last_switch_time > 800) 
+    {
+      last_switch_time = HAL_GetTick();
+      uint16_t number0 = number[0];
+      for(int i = 0 ; i < 7 ; i++){
+        number[i] = number[i+1];
+      }
+      number[7] = number0;
+      HAL_Delay(1);
+    }
+    
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
