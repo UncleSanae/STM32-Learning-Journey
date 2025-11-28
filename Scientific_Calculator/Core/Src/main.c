@@ -66,8 +66,6 @@ char KEY_MAP[4][4] = {
     };
 char formula_buf[64];
 uint8_t buf_index = 0;
-uint8_t key_lock = 0;
-uint8_t key_action = 0;
 uint32_t last_scan_time = 0;
 char key = ' ';
 
@@ -110,34 +108,18 @@ int main(void)
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
-    while (1)
-    {
-        if(HAL_GetTick() - last_scan_time > 500){
+    while(1){
+        if(HAL_GetTick() - last_scan_time > 20){
             last_scan_time = HAL_GetTick();
             key = buttonCheck(); 
-            if(key_lock == 0){
-                if(key != ' '){
-                    key_lock = 1;
-                }
-            }
-            if(key_lock == 1){
-                if(key == ' '){
-                    key_lock = 0;
-                    key_action = 0;
+            if(key != ' '){
+                if(key == 'C'){
+                    Calculator_Init();
+                }else if(key == '='){
+                    OLED_Clear();
+                    OLED_ShowString(1, 1, "Calculating..."); 
                 }else{
-                    if(key_action == 0){
-                        if(key == 'C'){
-                            Calculator_Init();
-                            key_action = 1;
-                        }else if(key == '='){
-                            OLED_Clear();
-                            OLED_ShowString(1, 1, "Calculating..."); 
-                            key_action = 1; 
-                        }else{
-                            Calculator_Input(key);
-                            key_action = 1; 
-                        }
-                    }
+                    Calculator_Input(key);
                 }
             }
         }
@@ -188,7 +170,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-char buttonCheck(void){
+/*char buttonCheck(void){
     GPIOA -> ODR |= 0x000F;
     for(uint8_t r = 0;r < 4;r++){
         GPIOA -> ODR &= ~(1 << r);
@@ -213,7 +195,32 @@ char buttonCheck(void){
     }
     GPIOA -> ODR |= 0x000F;
     return ' ';
+}*/
+char buttonCheck(void){
+    static char last_key = ' ';
+    char current_key = ' ';
+    GPIOA->ODR |= 0x000F;
+    for(uint8_t r = 0; r < 4; r++){
+        GPIOA->ODR &= ~(1 << r);
+        for(uint8_t l = 0; l < 4; l++){
+            if((GPIOA->IDR & (1 << (l+4))) == 0){
+                HAL_Delay(5);
+                if((GPIOA->IDR & (1 << (l+4))) == 0){
+                    current_key = KEY_MAP[r][l];
+                    if(current_key != last_key) {
+                        last_key = current_key;
+                        return current_key;
+                    } else {
+                        return ' ';
+                    }
+                }
+            }
+        }
+        GPIOA->ODR |= (1 << r);
     }
+    last_key = ' ';
+    return ' ';
+}
 void Calculator_Init(void){
     buf_index = 0;
     for(uint8_t i = 0;i < 64;i++){
